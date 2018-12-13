@@ -3,12 +3,13 @@ package com.quiz.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "USER")
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue

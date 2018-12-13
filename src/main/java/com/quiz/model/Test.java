@@ -1,12 +1,14 @@
 package com.quiz.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "test")
-public class Test {
+public class Test implements Serializable {
 
 
     @Id
@@ -29,6 +31,12 @@ public class Test {
     private boolean ifReturn;
     @Column(name="nr_questions")
     private int numberQuestions;
+
+    @ManyToMany(targetEntity = Question.class)
+    @JoinTable(name = "test_question",
+            joinColumns = { @JoinColumn(name = "test_id") },
+            inverseJoinColumns = { @JoinColumn(name = "question_id") })
+    private List<Question> questions = new ArrayList<>();
 
 
 
@@ -104,4 +112,11 @@ public class Test {
         this.numberQuestions = numberQuestions;
     }
 
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
 }

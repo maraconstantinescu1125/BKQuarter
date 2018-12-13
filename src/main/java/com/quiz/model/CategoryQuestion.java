@@ -1,28 +1,26 @@
 package com.quiz.model;
 
-
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-@Table(name = "category_test")
+@Table(name = "category_question")
 @AssociationOverrides({
         @AssociationOverride(name = "id.category",
                 joinColumns = @JoinColumn(name = "category_id")),
-        @AssociationOverride(name = "id.test",
-                joinColumns = @JoinColumn(name = "test_id")) })
-public class CategoryTest implements Serializable {
+        @AssociationOverride(name = "id.question",
+                joinColumns = @JoinColumn(name = "question_id")) })
+public class CategoryQuestion {
 
     @EmbeddedId
-    private CategoryTestId id;
+    private CategoryQuestionId id;
     private boolean rights;
 
 
-    public CategoryTestId getId() {
+    public CategoryQuestionId getId() {
         return id;
     }
 
-    public void setId(CategoryTestId id) {
+    public void setId(CategoryQuestionId id) {
         this.id = id;
     }
 

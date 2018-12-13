@@ -2,11 +2,13 @@ package com.quiz.controller;
 
 
 import com.quiz.model.Category;
+import com.quiz.model.User;
 import com.quiz.service.CategoryService;
+import com.quiz.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpServerErrorException;
 
 import java.util.List;
 
@@ -17,12 +19,25 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    @GetMapping(value="/get")
+    @Autowired
+    UserService userService;
+
+    @GetMapping(value="/categories")
     public List<Category> getCategories(){
 
-        categoryService.getCategory();
+       return categoryService.getCategory();
 
-        return null;
+
+    }
+
+    @PutMapping(value="/update")
+    public void update(@RequestBody Category category){
+        categoryService.update(category);
+    }
+
+    @GetMapping(value="/categoryByUser/{id}")
+    public List<Category> getCategoryByUser(@PathVariable("id") Integer userId){
+        return categoryService.getCategoriesByUserId(userId);
     }
 
 }

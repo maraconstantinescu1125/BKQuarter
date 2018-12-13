@@ -1,18 +1,29 @@
 package com.quiz.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name="Question")
 public class Question {
+    @Id
+    @GeneratedValue
+    @Column(name="id")
     private int id;
+    @Column(name="text")
     private String text;
-    private int numberAnswers;
+    @Column(name="nr_answer")
+    private Integer nr_answer;
+    @Column(name="score")
     private double score;
+    @Column(name="time")
     private long time;
+    @Column(name="type")
     private boolean type;
+    @Column(name="imageURL")
     private String imageURL;
-    private Category category;
-    private Test test;
-    private List<Answer> answers;
+
+
 
     public int getId() {
         return id;
@@ -30,12 +41,12 @@ public class Question {
         this.text = text;
     }
 
-    public int getNumberAnswers() {
-        return numberAnswers;
+    public Integer getNr_answer() {
+        return nr_answer;
     }
 
-    public void setNumberAnswers(int numberAnswers) {
-        this.numberAnswers = numberAnswers;
+    public void setNr_answer(Integer nr_answer) {
+        this.nr_answer = nr_answer;
     }
 
     public double getScore() {
@@ -70,27 +81,5 @@ public class Question {
         this.imageURL = imageURL;
     }
 
-    public Category getCategory() {
-        return category;
-    }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public Test getTest() {
-        return test;
-    }
-
-    public void setTest(Test test) {
-        this.test = test;
-    }
-
-    public List<Answer> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
-    }
 }

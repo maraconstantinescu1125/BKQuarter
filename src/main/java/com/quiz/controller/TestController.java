@@ -1,10 +1,11 @@
 package com.quiz.controller;
 
+import com.quiz.model.Category;
+import com.quiz.model.CategoryTestId;
 import com.quiz.model.Test;
+import com.quiz.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,10 +14,25 @@ import java.util.List;
 public class TestController {
 
     @Autowired
-    TestController testController;
+    TestService testService;
 
     @GetMapping(value="/all")
     public List<Test> getAll(){
-        return testController.getAll();
+        return testService.getTests();
+    }
+
+
+
+    @PostMapping(value="/addTestToCategory/{categoryId}/")
+    public Test addTestToCategory(@PathVariable int categoryId, @RequestBody Test test){
+        return testService.addTestToCategory(categoryId, test);
+
+    }
+
+    @PutMapping(value="/updateTest/{id}")
+    public Test a(@PathVariable int id, @RequestBody Test test){
+        Test attachedTest = testService.getTestById(id);
+        attachedTest.setName(test.getName());
+        return attachedTest;
     }
 }
