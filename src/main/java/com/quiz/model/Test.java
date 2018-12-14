@@ -20,17 +20,16 @@ public class Test implements Serializable {
     @Column(name="active")
     private boolean active;
     @Column(name="code_access")
-    private String accessCode;
-    @Column(name="public")
-    private boolean ifPublic;
+    private String code_access;
+    @Column(name="if_public")
+    private boolean if_public;
     @Column(name="time_active")
-    private LocalDateTime timeActive;
+    private LocalDateTime time_active;
     @Column(name="time")
     private long time;
-    @Column(name="return")
-    private boolean ifReturn;
-    @Column(name="nr_questions")
-    private int numberQuestions;
+    @Column(name="reversible")
+    private boolean reversible;
+
 
     @ManyToMany(targetEntity = Question.class)
     @JoinTable(name = "test_question",
@@ -64,28 +63,28 @@ public class Test implements Serializable {
         this.active = active;
     }
 
-    public String getAccessCode() {
-        return accessCode;
+    public String getCode_access() {
+        return code_access;
     }
 
-    public void setAccessCode(String accessCode) {
-        this.accessCode = accessCode;
+    public void setCode_access(String code_access) {
+        this.code_access = code_access;
     }
 
-    public boolean isIfPublic() {
-        return ifPublic;
+    public boolean isIf_public() {
+        return if_public;
     }
 
-    public void setIfPublic(boolean ifPublic) {
-        this.ifPublic = ifPublic;
+    public void setIf_public(boolean if_public) {
+        this.if_public = if_public;
     }
 
-    public LocalDateTime getTimeActive() {
-        return timeActive;
+    public LocalDateTime getTime_active() {
+        return time_active;
     }
 
-    public void setTimeActive(LocalDateTime timeActive) {
-        this.timeActive = timeActive;
+    public void setTime_active(LocalDateTime time_active) {
+        this.time_active = time_active;
     }
 
     public long getTime() {
@@ -96,21 +95,15 @@ public class Test implements Serializable {
         this.time = time;
     }
 
-    public boolean isIfReturn() {
-        return ifReturn;
+    public boolean isReversible() {
+        return reversible;
     }
 
-    public void setIfReturn(boolean ifReturn) {
-        this.ifReturn = ifReturn;
+    public void setReversible(boolean reversible) {
+        this.reversible = reversible;
     }
 
-    public int getNumberQuestions() {
-        return numberQuestions;
-    }
 
-    public void setNumberQuestions(int numberQuestions) {
-        this.numberQuestions = numberQuestions;
-    }
 
     public List<Question> getQuestions() {
         return questions;

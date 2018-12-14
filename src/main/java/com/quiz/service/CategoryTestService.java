@@ -10,6 +10,7 @@ import com.quiz.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +26,8 @@ public class CategoryTestService {
 
     @Autowired
     CategoryRepository categoryRepository;
+    @Autowired
+    TestService testService;
 
     public Optional<CategoryTest> findCategoryTestById(CategoryTestId id){
         return categoryTestRepository.findById(id);
@@ -61,6 +64,24 @@ public class CategoryTestService {
         categoryTest.setId(id);
         categoryTest.setRights(rights);
         categoryTestRepository.save(categoryTest);
+    }
+
+    public void deleteCategoryTest(Integer categoryId,Integer testId){
+        Optional<Category>categoryOptional=categoryRepository.findById(categoryId);
+        Optional<Test>testOptional=testRepository.findById(testId);
+        if(categoryOptional.isPresent()&&testOptional.isPresent()) {
+            CategoryTestId categoryTestId = new CategoryTestId();
+            Category category=categoryOptional.get();
+            Test test=testOptional.get();
+            categoryTestId.setTest(test);
+            categoryTestId.setCategory(category);
+            Optional<CategoryTest> categoryTestOptional = findCategoryTestById(categoryTestId);
+            if (categoryTestOptional.isPresent()) {
+                CategoryTest categoryTest = categoryTestOptional.get();
+                categoryTestRepository.delete(categoryTest);
+                testService.delete(test.getId());
+            }
+        }
     }
 
 

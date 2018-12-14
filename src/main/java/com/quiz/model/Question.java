@@ -12,8 +12,6 @@ public class Question {
     private int id;
     @Column(name="text")
     private String text;
-    @Column(name="nr_answer")
-    private Integer nr_answer;
     @Column(name="score")
     private double score;
     @Column(name="time")
@@ -41,13 +39,6 @@ public class Question {
         this.text = text;
     }
 
-    public Integer getNr_answer() {
-        return nr_answer;
-    }
-
-    public void setNr_answer(Integer nr_answer) {
-        this.nr_answer = nr_answer;
-    }
 
     public double getScore() {
         return score;

@@ -30,9 +30,14 @@ public class TestController {
     }
 
     @PutMapping(value="/updateTest/{id}")
-    public Test a(@PathVariable int id, @RequestBody Test test){
+    public Test update(@PathVariable int id, @RequestBody Test test){
         Test attachedTest = testService.getTestById(id);
         attachedTest.setName(test.getName());
         return attachedTest;
+    }
+
+    @DeleteMapping(value="/delete/{id}")
+    public List<Test> delete(@PathVariable int id){
+        return testService.delete(id);
     }
 }

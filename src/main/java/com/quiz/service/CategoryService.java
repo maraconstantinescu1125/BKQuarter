@@ -16,14 +16,11 @@ public class CategoryService {
     @Autowired
     CategoryRepository categoryRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
 
     public List<Category> getCategory() {
-        return categoryRepository.findAll();
-    }
-
-    public List<Category> saveCategory(Category category) {
-
-        categoryRepository.save(category);
         return categoryRepository.findAll();
     }
 
@@ -31,11 +28,27 @@ public class CategoryService {
         return categoryRepository.findById(id);
     }
 
-    public void update(Category categoryDetails) {
-        Category category = categoryRepository.findById(categoryDetails.getId()).get();
-        category.setName(categoryDetails.getName());
-        categoryRepository.save(categoryDetails);
+    public List<Category> update(Category categoryDetails) {
+        Optional<Category> categoryOptional = categoryRepository.findById(categoryDetails.getId());
+        if(categoryOptional.isPresent())
+            {
+            Category category=categoryOptional.get();
+            category.setName(categoryDetails.getName());
+            categoryRepository.save(categoryDetails);
+            }
+            return categoryRepository.findAll();
+    }
 
+    public List<Category> save(Category category,int idUser){
+        Optional<User> optionalUser=userRepository.findById(idUser);
+        if(optionalUser.isPresent()){
+            User user=optionalUser.get();
+            Category newCategory=new Category();
+            newCategory.setName(category.getName());
+            newCategory.setUser(user);
+            categoryRepository.save(newCategory);
+        }
+        return categoryRepository.findAll();
     }
 
     public List<Category> getCategoriesByUser(User userId) {

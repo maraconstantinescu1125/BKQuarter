@@ -31,13 +31,19 @@ public class CategoryController {
     }
 
     @PutMapping(value="/update")
-    public void update(@RequestBody Category category){
-        categoryService.update(category);
+    public List<Category> update(@RequestBody Category category){
+        return categoryService.update(category);
     }
 
     @GetMapping(value="/categoryByUser/{id}")
     public List<Category> getCategoryByUser(@PathVariable("id") Integer userId){
         return categoryService.getCategoriesByUserId(userId);
+    }
+
+    @PostMapping(value="/saveCategory/{id}")
+    public List<Category> save(@RequestBody Category category,@PathVariable Integer id){
+
+        return categoryService.save(category,id);
     }
 
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,5 +72,16 @@ public class TestService {
         return test;
         }
         return null;
+    }
+
+    public List<Test> delete(int id){
+
+        Optional<Test> testOptional=testRepository.findById(id);
+
+        if(testOptional.isPresent()){
+            if(categoryTestService.findCategoryTestByTest(id).isEmpty())
+            testRepository.deleteById(id);
+        }
+        return testRepository.findAll();
     }
 }

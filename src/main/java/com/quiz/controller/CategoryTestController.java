@@ -32,5 +32,10 @@ public class CategoryTestController {
         return categoryTestService.findCategoryTestByCategory(idCategory);
     }
 
+    @DeleteMapping(value="/delete/{idCategory}/{idTest}")
+    public void delete(@PathVariable("idCategory")Integer idCategory,@PathVariable("idTest")Integer idTest){
+        categoryTestService.deleteCategoryTest(idCategory,idTest);
+    }
+
 
 }
