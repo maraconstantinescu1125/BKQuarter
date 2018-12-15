@@ -1,7 +1,10 @@
 package com.quiz.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "MyTest")
@@ -26,6 +29,18 @@ public class MyTest {
     @JoinColumn(name = "category_id")
     @JoinColumn(name = "test_id")
     private CategoryTest categoryTest;
+
+    @OneToMany(mappedBy = "myTest", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("myTest")
+    List<QuestionScore> questionScores;
+
+    public List<QuestionScore> getQuestionScores() {
+        return questionScores;
+    }
+
+    public void setQuestionScores(List<QuestionScore> questionScores) {
+        this.questionScores = questionScores;
+    }
 
     public int getId() {
         return id;

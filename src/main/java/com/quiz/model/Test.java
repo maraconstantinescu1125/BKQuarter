@@ -1,10 +1,13 @@
 package com.quiz.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "test")
@@ -33,6 +36,7 @@ public class Test implements Serializable {
             joinColumns = {@JoinColumn(name = "test_id")},
             inverseJoinColumns = {@JoinColumn(name = "question_id")})
     private List<Question> questions = new ArrayList<>();
+
 
     public int getId() {
         return id;
