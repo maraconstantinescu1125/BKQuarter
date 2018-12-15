@@ -11,31 +11,29 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value="/category-test")
+@RequestMapping(value = "/category-test")
 public class CategoryTestController {
 
     @Autowired
     CategoryTestService categoryTestService;
 
-    @GetMapping(value="/getId")
-    public Optional<CategoryTest> getCategoryTestById(@RequestBody CategoryTestId id){
+    @GetMapping(value = "/getId")
+    public Optional<CategoryTest> getCategoryTestById(@RequestBody CategoryTestId id) {
         return categoryTestService.findCategoryTestById(id);
     }
 
-    @GetMapping(value="/getByTest/{id}")
-    public List<CategoryTest> getCategoryTestByTest(@PathVariable("id") Integer idTest){
+    @GetMapping(value = "/getByTest/{id}")
+    public List<CategoryTest> getCategoryTestByTest(@PathVariable("id") Integer idTest) {
         return categoryTestService.findCategoryTestByTest(idTest);
     }
 
-    @GetMapping(value="/getByCategory/{id}")
-    public List<CategoryTest> getCategoryTestByCategory(@PathVariable("id")Integer idCategory){
+    @GetMapping(value = "/getByCategory/{id}")
+    public List<CategoryTest> getCategoryTestByCategory(@PathVariable("id") Integer idCategory) {
         return categoryTestService.findCategoryTestByCategory(idCategory);
     }
 
-    @DeleteMapping(value="/delete/{idCategory}/{idTest}")
-    public void delete(@PathVariable("idCategory")Integer idCategory,@PathVariable("idTest")Integer idTest){
-        categoryTestService.deleteCategoryTest(idCategory,idTest);
+    @DeleteMapping(value = "/delete/{idCategory}/{idTest}")
+    public void delete(@PathVariable("idCategory") Integer idCategory, @PathVariable("idTest") Integer idTest) {
+        categoryTestService.deleteCategoryTest(idCategory, idTest);
     }
-
-
 }

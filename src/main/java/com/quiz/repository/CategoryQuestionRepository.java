@@ -13,11 +13,10 @@ import java.util.List;
 @Repository
 public interface CategoryQuestionRepository extends JpaRepository<CategoryQuestion, CategoryQuestionId> {
 
-    @Query(value= "SELECT * FROM category_question c WHERE c.question_id = ?1" , nativeQuery = true)
+    @Query(value = "SELECT * FROM category_question c WHERE c.question_id = ?1", nativeQuery = true)
     List<CategoryQuestion> findByIdQuestion(Question question);
 
-
-    @Query(value= "SELECT * FROM category_question c WHERE c.category_id = ?1" , nativeQuery = true)
+    @Query(value = "SELECT * FROM category_question c WHERE c.category_id = ?1", nativeQuery = true)
     List<CategoryQuestion> findByCategoryId(Category category);
 
 }

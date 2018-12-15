@@ -10,34 +10,31 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="/test")
+@RequestMapping(value = "/test")
 public class TestController {
 
     @Autowired
     TestService testService;
 
-    @GetMapping(value="/all")
-    public List<Test> getAll(){
+    @GetMapping(value = "/all")
+    public List<Test> getAll() {
         return testService.getTests();
     }
 
-
-
-    @PostMapping(value="/addTestToCategory/{categoryId}/")
-    public Test addTestToCategory(@PathVariable int categoryId, @RequestBody Test test){
+    @PostMapping(value = "/addTestToCategory/{categoryId}/")
+    public Test addTestToCategory(@PathVariable int categoryId, @RequestBody Test test) {
         return testService.addTestToCategory(categoryId, test);
-
     }
 
-    @PutMapping(value="/updateTest/{id}")
-    public Test update(@PathVariable int id, @RequestBody Test test){
+    @PutMapping(value = "/updateTest/{id}")
+    public Test update(@PathVariable int id, @RequestBody Test test) {
         Test attachedTest = testService.getTestById(id);
         attachedTest.setName(test.getName());
         return attachedTest;
     }
 
-    @DeleteMapping(value="/delete/{id}")
-    public List<Test> delete(@PathVariable int id){
+    @DeleteMapping(value = "/delete/{id}")
+    public List<Test> delete(@PathVariable int id) {
         return testService.delete(id);
     }
 }

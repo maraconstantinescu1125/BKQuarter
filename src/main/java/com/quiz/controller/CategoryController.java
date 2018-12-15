@@ -13,7 +13,7 @@ import org.springframework.web.client.HttpServerErrorException;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="/category")
+@RequestMapping(value = "/category")
 public class CategoryController {
 
     @Autowired
@@ -22,28 +22,26 @@ public class CategoryController {
     @Autowired
     UserService userService;
 
-    @GetMapping(value="/categories")
-    public List<Category> getCategories(){
+    @GetMapping(value = "/categories")
+    public List<Category> getCategories() {
 
-       return categoryService.getCategory();
-
-
+        return categoryService.getCategory();
     }
 
-    @PutMapping(value="/update")
-    public List<Category> update(@RequestBody Category category){
+    @PutMapping(value = "/update")
+    public List<Category> update(@RequestBody Category category) {
         return categoryService.update(category);
     }
 
-    @GetMapping(value="/categoryByUser/{id}")
-    public List<Category> getCategoryByUser(@PathVariable("id") Integer userId){
+    @GetMapping(value = "/categoryByUser/{id}")
+    public List<Category> getCategoryByUser(@PathVariable("id") Integer userId) {
         return categoryService.getCategoriesByUserId(userId);
     }
 
-    @PostMapping(value="/saveCategory/{id}")
-    public List<Category> save(@RequestBody Category category,@PathVariable Integer id){
+    @PostMapping(value = "/saveCategory/{id}")
+    public List<Category> save(@RequestBody Category category, @PathVariable Integer id) {
 
-        return categoryService.save(category,id);
+        return categoryService.save(category, id);
     }
 
 }

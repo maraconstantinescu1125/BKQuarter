@@ -8,21 +8,20 @@ import java.util.List;
 
 
 @Entity
-@Table(name="category")
+@Table(name = "category")
 public class Category implements Serializable {
 
     @Id
     @GeneratedValue
-    @Column(name="id")
+    @Column(name = "id")
     private int id;
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     @JsonIgnoreProperties("categories")
     private User user;
-
 
     public int getId() {
         return id;
@@ -47,6 +46,5 @@ public class Category implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
-
 
 }

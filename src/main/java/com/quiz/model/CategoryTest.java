@@ -10,7 +10,7 @@ import java.io.Serializable;
         @AssociationOverride(name = "id.category",
                 joinColumns = @JoinColumn(name = "category_id")),
         @AssociationOverride(name = "id.test",
-                joinColumns = @JoinColumn(name = "test_id")) })
+                joinColumns = @JoinColumn(name = "test_id"))})
 public class CategoryTest implements Serializable {
 
     @EmbeddedId

@@ -10,24 +10,22 @@ import java.util.Set;
 @Entity
 @Table(name = "USER")
 public class User implements Serializable {
-
     @Id
     @GeneratedValue
-    @Column(name="id")
+    @Column(name = "id")
     private Integer id;
-    @Column(name="username")
+    @Column(name = "username")
     private String username;
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
-    @Column(name="email")
+    @Column(name = "email")
     private String email;
-    @Column(name="type")
+    @Column(name = "type")
     private boolean type;
 
-    @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("user")
     Set<Category> categories;
-
 
     public int getId() {
         return id;

@@ -31,56 +31,53 @@ public class TestService {
     @Autowired
     CategoryRepository categoryRepository;
 
-    public Test createTest(String name){
+    public Test createTest(String name) {
         Test test = new Test();
         test.setActive(true);
         test.setName(name);
         return testRepository.save(test);
     }
 
-    public Question createQuestion(String text){
+    public Question createQuestion(String text) {
         Question question = new Question();
         question.setText(text);
         return questionRepository.save(question);
     }
 
-
-
-    public List<Test> getTests(){
+    public List<Test> getTests() {
         return testRepository.findAll();
     }
 
 
-
-    public Test getTestById(int id){
+    public Test getTestById(int id) {
         return testRepository.getOne(id);
     }
 
-    public Test addTestToCategory(int categoryId, Test test){
-       Optional<Category> categoryOptional= categoryRepository.findById(categoryId);
-       if(categoryOptional.isPresent()){
-           Category category=categoryOptional.get();
-           List<Question> questions=new ArrayList<>();
-            for(Question question:test.getQuestions()){
+    public Test addTestToCategory(int categoryId, Test test) {
+        Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
+        if (categoryOptional.isPresent()) {
+            Category category = categoryOptional.get();
+            List<Question> questions = new ArrayList<>();
+            for (Question question : test.getQuestions()) {
                 question = questionRepository.save(question);
                 questions.add(question);
-                categoryQuestionService.saveCategoryQuestion(category,question,true);
+                categoryQuestionService.saveCategoryQuestion(category, question, true);
             }
             test.setQuestions(questions);
-            test=testRepository.save(test);
-           categoryTestService.saveCategoryTest(category,test,true);
-        return test;
+            test = testRepository.save(test);
+            categoryTestService.saveCategoryTest(category, test, true);
+            return test;
         }
         return null;
     }
 
-    public List<Test> delete(int id){
+    public List<Test> delete(int id) {
 
-        Optional<Test> testOptional=testRepository.findById(id);
+        Optional<Test> testOptional = testRepository.findById(id);
 
-        if(testOptional.isPresent()){
-            if(categoryTestService.findCategoryTestByTest(id).isEmpty())
-            testRepository.deleteById(id);
+        if (testOptional.isPresent()) {
+            if (categoryTestService.findCategoryTestByTest(id).isEmpty())
+                testRepository.deleteById(id);
         }
         return testRepository.findAll();
     }

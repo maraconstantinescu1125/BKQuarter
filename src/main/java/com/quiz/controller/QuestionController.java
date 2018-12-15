@@ -11,16 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="/question")
+@RequestMapping(value = "/question")
 public class QuestionController {
 
     @Autowired
     QuestionService questionService;
 
-    @GetMapping(value="/all")
-    public List<Question> getAll(){
+    @GetMapping(value = "/all")
+    public List<Question> getAll() {
         return questionService.getQuestions();
     }
-
 
 }

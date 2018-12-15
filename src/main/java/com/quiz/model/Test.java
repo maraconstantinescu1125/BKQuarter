@@ -9,35 +9,30 @@ import java.util.List;
 @Entity
 @Table(name = "test")
 public class Test implements Serializable {
-
-
     @Id
     @GeneratedValue
-    @Column(name="id")
+    @Column(name = "id")
     private int id;
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
-    @Column(name="active")
+    @Column(name = "active")
     private boolean active;
-    @Column(name="code_access")
+    @Column(name = "code_access")
     private String code_access;
-    @Column(name="if_public")
+    @Column(name = "if_public")
     private boolean if_public;
-    @Column(name="time_active")
+    @Column(name = "time_active")
     private LocalDateTime time_active;
-    @Column(name="time")
+    @Column(name = "time")
     private long time;
-    @Column(name="reversible")
+    @Column(name = "reversible")
     private boolean reversible;
-
 
     @ManyToMany(targetEntity = Question.class)
     @JoinTable(name = "test_question",
-            joinColumns = { @JoinColumn(name = "test_id") },
-            inverseJoinColumns = { @JoinColumn(name = "question_id") })
+            joinColumns = {@JoinColumn(name = "test_id")},
+            inverseJoinColumns = {@JoinColumn(name = "question_id")})
     private List<Question> questions = new ArrayList<>();
-
-
 
     public int getId() {
         return id;
@@ -102,8 +97,6 @@ public class Test implements Serializable {
     public void setReversible(boolean reversible) {
         this.reversible = reversible;
     }
-
-
 
     public List<Question> getQuestions() {
         return questions;

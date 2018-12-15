@@ -4,24 +4,22 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="Question")
+@Table(name = "Question")
 public class Question {
     @Id
     @GeneratedValue
-    @Column(name="id")
+    @Column(name = "id")
     private int id;
-    @Column(name="text")
+    @Column(name = "text")
     private String text;
-    @Column(name="score")
+    @Column(name = "score")
     private double score;
-    @Column(name="time")
+    @Column(name = "time")
     private long time;
-    @Column(name="type")
+    @Column(name = "type")
     private boolean type;
-    @Column(name="imageURL")
+    @Column(name = "imageURL")
     private String imageURL;
-
-
 
     public int getId() {
         return id;
@@ -38,7 +36,6 @@ public class Question {
     public void setText(String text) {
         this.text = text;
     }
-
 
     public double getScore() {
         return score;
@@ -71,6 +68,5 @@ public class Question {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
-
 
 }

@@ -3,18 +3,18 @@ package com.quiz.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "answer")
-public class Answer {
-
+@Table(name = "QuestionScore")
+public class QuestionScore {
     @Id
     @GeneratedValue
     @Column(name = "id")
     private int id;
-    @Column(name = "text")
-    private String text;
-    @Column(name = "ifCorrect")
-    private boolean ifCorrect;
+    @Column(name = "score")
+    private double score;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "my_test_id")
+    private MyTest myTest;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "question_id")
     private Question question;
@@ -27,20 +27,20 @@ public class Answer {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public double getScore() {
+        return score;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setScore(double score) {
+        this.score = score;
     }
 
-    public boolean isIfCorrect() {
-        return ifCorrect;
+    public MyTest getMyTest() {
+        return myTest;
     }
 
-    public void setIfCorrect(boolean ifCorrect) {
-        this.ifCorrect = ifCorrect;
+    public void setMyTest(MyTest myTest) {
+        this.myTest = myTest;
     }
 
     public Question getQuestion() {

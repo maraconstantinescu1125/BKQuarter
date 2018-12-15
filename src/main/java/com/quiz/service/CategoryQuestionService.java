@@ -23,7 +23,6 @@ public class CategoryQuestionService {
     @Autowired
     QuestionRepository questionRepository;
 
-
     public List<CategoryQuestion> findCategoryQuestionByCategory(int categoryId){
 
         Optional<Category> categoryOptional=categoryRepository.findById(categoryId);
@@ -34,7 +33,6 @@ public class CategoryQuestionService {
             return Collections.emptyList();
         }
     }
-
 
     public List<CategoryQuestion> findCategoryQuestionByQuestion(int questionId){
 
