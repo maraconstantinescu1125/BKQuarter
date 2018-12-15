@@ -45,6 +45,16 @@ public class CategoryQuestionService {
         }
     }
 
+  public List<Question> findQuestionByCategory(int categoryId){
+        List<Question> questions=new ArrayList<>();
+        List<CategoryQuestion> list=findCategoryQuestionByCategory( categoryId);
+        for(CategoryQuestion categoryQuestion:list){
+            questions.add(categoryQuestion.getId().getQuestion());
+        }
+        return questions;
+
+    }
+
     public void saveCategoryQuestion(Category category,Question question,boolean rights){
         CategoryQuestion categoryQuestion = new CategoryQuestion();
         CategoryQuestionId id=new CategoryQuestionId();

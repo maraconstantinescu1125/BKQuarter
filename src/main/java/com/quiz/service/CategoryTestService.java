@@ -55,6 +55,15 @@ public class CategoryTestService {
         }
     }
 
+  public List<Test> findTestByCategory(int categoryId){
+        List<Test> tests=new ArrayList<>();
+        List<CategoryTest>list=findCategoryTestByCategory(categoryId);
+            for(CategoryTest categoryTest:list) {
+                tests.add(categoryTest.getId().getTest());
+            }
+        return tests;
+    }
+
     public void saveCategoryTest(Category category, Test test, boolean rights) {
         CategoryTest categoryTest = new CategoryTest();
         CategoryTestId id = new CategoryTestId();
